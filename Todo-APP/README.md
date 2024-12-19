@@ -1,1 +1,1 @@
-React Collection of Small Projects
+React Todo App
