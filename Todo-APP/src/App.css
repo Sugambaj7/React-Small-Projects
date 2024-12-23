@@ -1,7 +1,6 @@
 body {
   background-color: cadetblue;
   color: white;
-  overflow: hidden;
 }
 h1 {
   text-align: center;
@@ -16,6 +15,7 @@ h1 {
   max-height: 80vh;
   overflow-y: auto;
   box-shadow: 0px 5px 7px rgb(27, 27, 27);
+  margin-bottom: 50px;
 }
 .todo-input {
   display: flex;
@@ -69,4 +69,47 @@ h1 {
 .active {
   background-color: rgb(0, 230, 122);
   color: white;
+}
+.todo-list {
+  display: flex;
+  flex-direction: column;
+}
+.todo-list-item {
+  background-color: #414040;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 25px 10px 25px;
+  margin-bottom: 10px;
+  box-shadow: 0px 3px 5px rgb(43, 42, 42);
+}
+.btn-area {
+  margin-bottom: 15px;
+}
+.todo-list-item h3 {
+  font-size: 25px;
+  color: rgb(0, 230, 122);
+  font-weight: bold;
+  margin: 0;
+}
+.todo-list-item p {
+  font-size: 14px;
+  color: rgb(161, 161, 161);
+  margin-top: 8px;
+}
+.delete-icon {
+  cursor: pointer;
+  font-size: 25px;
+}
+.delete-icon:hover {
+  color: red;
+}
+.check-icon {
+  cursor: pointer;
+  font-size: 25px;
+  margin-left: 10px;
+  color: rgb(0, 230, 122);
+}
+.check-icon:hover {
+  color: rgb(4, 196, 106);
 }
