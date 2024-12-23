@@ -8,6 +8,7 @@ const App = () => {
   const [allTodos, setTodos] = useState([]);
   const [newTitle, setNewTitle] = useState("");
   const [newDescription, setNewDescription] = useState("");
+  const [completedTodos, setCompletedTodos] = useState([]);
 
   const handleAddTodo = () => {
     let newTodoItem = {
@@ -24,8 +25,15 @@ const App = () => {
 
   useEffect(() => {
     let savedTodos = JSON.parse(localStorage.getItem("allTodos"));
+    let savedCompletedTodos = JSON.parse(
+      localStorage.getItem("completedTodos")
+    );
+
     if (savedTodos) {
       setTodos(savedTodos);
+    }
+    if (savedCompletedTodos) {
+      setCompletedTodos(savedCompletedTodos);
     }
   }, []);
 
@@ -34,6 +42,41 @@ const App = () => {
     reducedTodos.splice(index);
     localStorage.setItem("allTodos", JSON.stringify(reducedTodos));
     setTodos(reducedTodos);
+  };
+
+  const handleDeleteCompletedTodo = (index) => {
+    let reducedCompletedTodos = [...completedTodos];
+    reducedCompletedTodos.splice(index);
+    localStorage.setItem(
+      "completedTodos",
+      JSON.stringify(reducedCompletedTodos)
+    );
+    setCompletedTodos(reducedCompletedTodos);
+  };
+
+  const handleCompletedTodo = (index) => {
+    let now = new Date();
+    let dd = now.getDate();
+    let mm = now.getMonth() + 1;
+    let yyyy = now.getFullYear();
+    let h = now.getHours();
+    let m = now.getMinutes();
+    let s = now.getSeconds();
+    let completedOn =
+      dd + "-" + mm + "-" + yyyy + " at " + h + ":" + m + ":" + s;
+
+    let filteredTodos = {
+      ...allTodos[index],
+      completedOn: completedOn,
+    };
+
+    let updatedCompletedArr = [...completedTodos];
+    updatedCompletedArr.push(filteredTodos);
+    setCompletedTodos(updatedCompletedArr);
+
+    handleDeleteTodo(index);
+    localStorage.setItem("completedTodos", JSON.stringify(updatedCompletedArr));
+    setCompletedTodos(updatedCompletedArr);
   };
 
   return (
@@ -80,23 +123,47 @@ const App = () => {
           </button>
         </div>
         <div className="todo-list">
-          {allTodos.map((todo, index) => {
-            return (
-              <div className="todo-list-item" key={index}>
-                <div>
-                  <h3>{todo.title}</h3>
-                  <p>{todo.description}</p>
+          {isCompleteScreen === false &&
+            allTodos.map((todo, index) => {
+              return (
+                <div className="todo-list-item" key={index}>
+                  <div>
+                    <h3>{todo.title}</h3>
+                    <p>{todo.description}</p>
+                  </div>
+                  <div>
+                    <AiOutlineDelete
+                      className="delete-icon"
+                      onClick={() => handleDeleteTodo(index)}
+                    />
+                    <BsCheckLg
+                      className="check-icon"
+                      onClick={() => handleCompletedTodo(index)}
+                    />
+                  </div>
                 </div>
-                <div>
-                  <AiOutlineDelete
-                    className="delete-icon"
-                    onClick={() => handleDeleteTodo(index)}
-                  />
-                  <BsCheckLg className="check-icon" />
+              );
+            })}
+          {isCompleteScreen === true &&
+            completedTodos.map((completedTodo, index) => {
+              return (
+                <div className="todo-list-item" key={index}>
+                  <div>
+                    <h3>{completedTodo.title}</h3>
+                    <p>{completedTodo.description}</p>
+                    <p>
+                      <small>Completed On: {completedTodo.completedOn}</small>
+                    </p>
+                  </div>
+                  <div>
+                    <AiOutlineDelete
+                      className="delete-icon"
+                      onClick={() => handleDeleteCompletedTodo(index)}
+                    />
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
     </div>
