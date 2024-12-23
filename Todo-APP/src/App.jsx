@@ -27,7 +27,14 @@ const App = () => {
     if (savedTodos) {
       setTodos(savedTodos);
     }
-  }, [])
+  }, []);
+
+  const handleDeleteTodo = (index) => {
+    let reducedTodos = [...allTodos];
+    reducedTodos.splice(index);
+    localStorage.setItem("allTodos", JSON.stringify(reducedTodos));
+    setTodos(reducedTodos);
+  };
 
   return (
     <div className="App">
@@ -81,7 +88,10 @@ const App = () => {
                   <p>{todo.description}</p>
                 </div>
                 <div>
-                  <AiOutlineDelete className="delete-icon" />
+                  <AiOutlineDelete
+                    className="delete-icon"
+                    onClick={() => handleDeleteTodo(index)}
+                  />
                   <BsCheckLg className="check-icon" />
                 </div>
               </div>
