@@ -39,14 +39,14 @@ const App = () => {
 
   const handleDeleteTodo = (index) => {
     let reducedTodos = [...allTodos];
-    reducedTodos.splice(index);
+    reducedTodos.splice(index, 1);
     localStorage.setItem("allTodos", JSON.stringify(reducedTodos));
     setTodos(reducedTodos);
   };
 
   const handleDeleteCompletedTodo = (index) => {
     let reducedCompletedTodos = [...completedTodos];
-    reducedCompletedTodos.splice(index);
+    reducedCompletedTodos.splice(index, 1);
     localStorage.setItem(
       "completedTodos",
       JSON.stringify(reducedCompletedTodos)
@@ -123,6 +123,7 @@ const App = () => {
           </button>
         </div>
         <div className="todo-list">
+          {isCompleteScreen === false}
           {isCompleteScreen === false &&
             allTodos.map((todo, index) => {
               return (
