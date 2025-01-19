@@ -49,6 +49,9 @@ const Weather = () => {
       if (!response.ok) {
         setError(weatherData.message);
       }
+      else{
+        setError(false)
+      }
       console.log(weatherData);
       const icon = allIcons[weatherData.weather[0].icon] || clear_icon;
       // console.log(icon, "k xa");
