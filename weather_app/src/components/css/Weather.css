@@ -63,3 +63,15 @@
   width: 26px;
   margin-top: 10px;
 }
+.error p {
+  color: rgb(232, 21, 21);
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+.cityError {
+  color: rgb(232, 21, 21);
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
