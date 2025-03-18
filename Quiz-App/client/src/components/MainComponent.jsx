@@ -12,7 +12,7 @@ const MainComponent = () => {
         <li>You will be asked 10 questions one after another.</li>
         <li>10 points is awarded for the correct answer.</li>
         <li>
-          Each question has three otions. You can choose only one options.
+          Each question has three options. You can choose only one option.
         </li>
         <li>You can review and change answers before the quiz completion.</li>
         <li>The result will be declared at the end of the quiz.</li>
