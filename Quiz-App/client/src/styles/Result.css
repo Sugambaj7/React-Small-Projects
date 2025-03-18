@@ -1,0 +1,38 @@
+.flex-center {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid #cecece;
+  padding: 3em 4em;
+  gap: 12px;
+}
+.container .flex {
+  display: flex;
+  justify-content: space-between;
+}
+.container .flex span {
+  font-size: 1.5em;
+  color: #cecece;
+}
+.table {
+  width: 100%;
+  background-color: #cecece;
+}
+.table-header {
+  color: #cecece;
+  font-size: 1.1em;
+  text-align: center;
+  background: #212121;
+}
+.table .table-header .table-row > td {
+  padding: 15px;
+}
+.table .table-body .table-row > td {
+  padding: 8px 0;
+}
+.table-body {
+  font-size: 1.1em;
+  text-align: center;
+  background: #d8d8d8;
+  padding: 18px 0;
+}
