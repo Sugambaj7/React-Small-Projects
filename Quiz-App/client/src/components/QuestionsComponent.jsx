@@ -1,20 +1,34 @@
-import React, { useState } from "react";
-import data from "../utils/data";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+
+//custom hook
+import {useFetchQuestion} from "../hooks/FetchQuestion";
 
 const QuestionsComponent = () => {
   const [checked, setChecked] = useState(undefined);
 
-  const question = data[0];
+  const [{ isLoading, apiData, serverError }] = useFetchQuestion();
+
+  // const question = data[0];
+  const question = useSelector((state) => state.question.queue[state.question.trace]);
+
+  useEffect(() => {
+    // console.log(isLoading, "custom hook called");
+    console.log(question, "iam from state");
+  });
+
   function onSelect() {
     setChecked(true);
     console.log("Radio btn changed");
   }
+  if (isLoading) return <h3 className="text-light">Loading....</h3>;
+  if (serverError) return <h3 className="text-light">Unknown Server Error</h3>;
 
   return (
     <div className="questions">
-      <h2 className="text-light">{question.question}</h2>
-      <ul key={question.id}>
-        {question.options.map((option, index) => (
+      <h2 className="text-light">{question?.question}</h2>
+      <ul key={question?.id}>
+        {question?.options.map((option, index) => (
           <li key={index}>
             <input
               type="radio"

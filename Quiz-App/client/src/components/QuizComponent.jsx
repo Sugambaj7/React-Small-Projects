@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import QuestionsComponent from "./QuestionsComponent";
+import { useSelector, useDispatch } from "react-redux";
+import { MoveToNextQuestion } from "../hooks/FetchQuestion";
 
 const QuizComponent = () => {
+  const trace = useSelector((state) => state.question.trace);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log(trace, "quiz");
+  });
+
   //prev button event handler
   function onPrev() {
     console.log("Prev btn clicked");
@@ -9,7 +18,7 @@ const QuizComponent = () => {
 
   //next button event handler
   function onNext() {
-    console.log("Next btn clicked");
+    dispatch(MoveToNextQuestion());
   }
   return (
     <div className="container">
