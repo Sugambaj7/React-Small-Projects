@@ -1,25 +1,29 @@
 import React, { useEffect } from "react";
 import QuestionsComponent from "./QuestionsComponent";
 import { useSelector, useDispatch } from "react-redux";
-import { MoveToNextQuestion } from "../hooks/FetchQuestion";
+import { MoveToNextQuestion, MoveToPrevQuestion } from "../hooks/FetchQuestion";
+import { pushAnswer } from "../hooks/setResult";
 
 const QuizComponent = () => {
-  const trace = useSelector((state) => state.question.trace);
+  const { trace, queue } = useSelector((state) => state.question);
   const dispatch = useDispatch();
 
   useEffect(() => {
     console.log(trace, "quiz");
   });
 
-  //prev button event handler
   function onPrev() {
-    console.log("Prev btn clicked");
+    if (trace > 0) {
+      dispatch(MoveToPrevQuestion());
+    }
+  }
+  function onNext() {
+    if (trace < queue.length) {
+      dispatch(MoveToNextQuestion());
+      dispatch(pushAnswer(2));
+    }
   }
 
-  //next button event handler
-  function onNext() {
-    dispatch(MoveToNextQuestion());
-  }
   return (
     <div className="container">
       <h1 className="title text-light">Quiz Application</h1>

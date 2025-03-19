@@ -22,8 +22,14 @@ export const questionSlice = createSlice({
         trace: state.trace + 1,
       };
     },
+    moveToPrevAction: (state, action) => {
+      return {
+        ...state,
+        trace: state.trace - 1,
+      };
+    },
   },
 });
 
-export const { startExamAction, moveToNextAction } = questionSlice.actions;
+export const { startExamAction, moveToNextAction, moveToPrevAction } = questionSlice.actions;
 export default questionSlice.reducer;

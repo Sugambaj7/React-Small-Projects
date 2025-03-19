@@ -57,3 +57,12 @@ export const MoveToNextQuestion = () => async (dispatch) => {
     console.log(err);
   }
 };
+
+/** Function to dispatch MoveToPrevAction */
+export const MoveToPrevQuestion = () => async (dispatch) => {
+  try {
+    dispatch(Action.moveToPrevAction());
+  } catch (err) {
+    console.log(err);
+  }
+};

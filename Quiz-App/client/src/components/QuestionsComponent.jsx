@@ -7,6 +7,8 @@ import {useFetchQuestion} from "../hooks/FetchQuestion";
 const QuestionsComponent = () => {
   const [checked, setChecked] = useState(undefined);
 
+
+  //use state hook from getch question bata aako data
   const [{ isLoading, apiData, serverError }] = useFetchQuestion();
 
   // const question = data[0];
