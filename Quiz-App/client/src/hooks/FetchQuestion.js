@@ -66,3 +66,12 @@ export const MoveToPrevQuestion = () => async (dispatch) => {
     console.log(err);
   }
 };
+
+//Function to reset question
+export const ResetAllQuestion = () => async (dispatch) => {
+  try {
+    dispatch(Action.resetAllAction());
+  } catch (err) {
+    console.log(err);
+  }
+};

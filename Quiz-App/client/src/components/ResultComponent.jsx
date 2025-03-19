@@ -2,9 +2,16 @@ import React from "react";
 import "../styles/Result.css";
 import { Link } from "react-router-dom";
 import ResultTableComponent from "./ResultTableComponent";
+import { useDispatch } from "react-redux";
+import { ResetAnswer } from "../hooks/setResult";
+import { ResetAllQuestion } from "../hooks/FetchQuestion";
+
 const ResultComponent = () => {
+  const dispatch = useDispatch();
+
   function onRestart() {
-    console.log("Restart btn clicked");
+    dispatch(ResetAnswer());
+    dispatch(ResetAllQuestion());
   }
 
   return (

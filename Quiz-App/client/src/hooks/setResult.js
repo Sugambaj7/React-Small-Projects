@@ -7,3 +7,12 @@ export const pushAnswer = (result) => async (dispatch) => {
     console.log(err);
   }
 };
+
+//function to reset answer given by user
+export const ResetAnswer = () => async (dispatch) => {
+  try {
+    dispatch(Action.resetResultAction());
+  } catch (err) {
+    console.log(err);
+  }
+};
