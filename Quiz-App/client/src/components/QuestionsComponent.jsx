@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 //custom hook
 import { useFetchQuestion } from "../hooks/FetchQuestion";
+import { UpdateAnswer } from "../hooks/setResult";
 
-const QuestionsComponent = ({onChecked}) => {
-
+const QuestionsComponent = ({ onChecked }) => {
+  const [checkedQuestion, setCheckedQuestion] = useState(undefined);
+  const { trace } = useSelector((state) => state.question);
   //use state hook from getch question bata aako data
+  const dispatch = useDispatch();
   const [{ isLoading, apiData, serverError }] = useFetchQuestion();
 
   // const question = data[0];
@@ -15,12 +18,12 @@ const QuestionsComponent = ({onChecked}) => {
   );
 
   useEffect(() => {
-    // console.log(isLoading, "custom hook called");
-    console.log(question, "iam from state");
-  });
+    dispatch(UpdateAnswer({ trace, checked: checkedQuestion }));
+  }, [checkedQuestion]);
 
   function onSelect(index) {
     onChecked(index);
+    setCheckedQuestion(index);
     console.log(index, "Radio btn changed");
   }
   if (isLoading) return <h3 className="text-light">Loading....</h3>;

@@ -13,7 +13,7 @@ const QuizComponent = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(trace, "trace here");
+    console.log(trace, "current trace here");
     console.log(result.length, "result length here");
   });
 
@@ -25,7 +25,9 @@ const QuizComponent = () => {
   function onNext() {
     if (trace < queue.length) {
       dispatch(MoveToNextQuestion());
-      dispatch(pushAnswer(checkedQuestion));
+      if (result.length <= trace) {
+        dispatch(pushAnswer(checkedQuestion));
+      }
     }
   }
 
@@ -46,9 +48,12 @@ const QuizComponent = () => {
       <QuestionsComponent onChecked={onChecked} />
 
       <div className="grid">
-        <button className="btn prev" onClick={onPrev}>
-          Prev
-        </button>
+        {trace && trace > 0 && (
+          <button className="btn prev" onClick={onPrev}>
+            Prev
+          </button>
+        )}
+
         <button className="btn next" onClick={onNext}>
           Next
         </button>

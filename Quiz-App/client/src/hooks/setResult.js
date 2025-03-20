@@ -16,3 +16,12 @@ export const ResetAnswer = () => async (dispatch) => {
     console.log(err);
   }
 };
+
+//function to update answer given by user
+export const UpdateAnswer = (index) => async (dispatch) => {
+  try {
+    dispatch(Action.updateResultAction(index));
+  } catch (err) {
+    console.log(err);
+  }
+};
