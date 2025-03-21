@@ -8,6 +8,8 @@ import { UpdateAnswer } from "../hooks/setResult";
 const QuestionsComponent = ({ onChecked }) => {
   const [checkedQuestion, setCheckedQuestion] = useState(undefined);
   const { trace } = useSelector((state) => state.question);
+  const { result } = useSelector((state) => state.result);
+  console.log(result, "k xa result ma");
   //use state hook from getch question bata aako data
   const dispatch = useDispatch();
   const [{ isLoading, apiData, serverError }] = useFetchQuestion();
@@ -24,7 +26,7 @@ const QuestionsComponent = ({ onChecked }) => {
   function onSelect(index) {
     onChecked(index);
     setCheckedQuestion(index);
-    console.log(index, "Radio btn changed");
+    dispatch(UpdateAnswer({ trace, checked: checkedQuestion }));
   }
   if (isLoading) return <h3 className="text-light">Loading....</h3>;
   if (serverError) return <h3 className="text-light">Unknown Server Error</h3>;
@@ -46,7 +48,10 @@ const QuestionsComponent = ({ onChecked }) => {
             <label className="text-primary" htmlFor={`q${index + 1}-option`}>
               {option}
             </label>
-            <div className="check"></div>
+            {console.log(index, "k xa index ma")}
+            <div
+              className={`check ${checkedQuestion === index ? "checked" : ""}`}
+            ></div>
           </li>
         ))}
       </ul>

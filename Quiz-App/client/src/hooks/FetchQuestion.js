@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import data from "../utils/data.js";
+import data, { answers } from "../utils/data.js";
 
 /** Redux Actions  **/
 import * as Action from "../features/Quiz-App/questionSlice.js";
+
 
 export const useFetchQuestion = () => {
   const dispatch = useDispatch();
@@ -28,9 +29,9 @@ export const useFetchQuestion = () => {
           setData((prev) => ({
             ...prev,
             isLoading: false,
-            apiData: questions,
+            apiData: {questions, answers},
           }));
-          dispatch(Action.startExamAction(questions));
+          dispatch(Action.startExamAction({questions, answers}));
         } else {
           throw new Error("No Question Available");
         }

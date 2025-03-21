@@ -48,10 +48,12 @@ const QuizComponent = () => {
       <QuestionsComponent onChecked={onChecked} />
 
       <div className="grid">
-        {trace && trace > 0 && (
+        {trace > 0 ? (
           <button className="btn prev" onClick={onPrev}>
             Prev
           </button>
+        ) : (
+          <div></div>
         )}
 
         <button className="btn next" onClick={onNext}>

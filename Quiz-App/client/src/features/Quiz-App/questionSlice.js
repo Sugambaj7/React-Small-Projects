@@ -11,9 +11,11 @@ export const questionSlice = createSlice({
   initialState,
   reducers: {
     startExamAction: (state, action) => {
+      let {questions, answers} = action.payload;
       return {
         ...state,
-        queue: action.payload,
+        queue: questions,
+        answers: answers,
       };
     },
     moveToNextAction: (state, action) => {
