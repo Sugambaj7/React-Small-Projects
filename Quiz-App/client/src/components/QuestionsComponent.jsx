@@ -48,9 +48,8 @@ const QuestionsComponent = ({ onChecked }) => {
             <label className="text-primary" htmlFor={`q${index + 1}-option`}>
               {option}
             </label>
-            {console.log(index, "k xa index ma")}
             <div
-              className={`check ${checkedQuestion === index ? "checked" : ""}`}
+              className={`check ${result[trace] === index ? "checked" : ""}`}
             ></div>
           </li>
         ))}

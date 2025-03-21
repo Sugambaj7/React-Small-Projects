@@ -29,6 +29,9 @@ const QuizComponent = () => {
         dispatch(pushAnswer(checkedQuestion));
       }
     }
+
+    //reset the value of the checked quest
+    setCheckedQuestion(undefined);
   }
 
   function onChecked(check) {
