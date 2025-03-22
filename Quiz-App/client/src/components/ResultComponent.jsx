@@ -9,7 +9,7 @@ import {
   attempts_NumberOfQuestion,
   earnedPoints_Number,
   flagResult,
-} from "../helper/helper";
+} from "../helper/helper.jsx";
 
 const ResultComponent = () => {
   const dispatch = useDispatch();
