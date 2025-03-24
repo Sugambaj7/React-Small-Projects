@@ -19,7 +19,7 @@ const resultModel = new Schema({
     type: Number,
     default: 0,
   },
-  earnedPoints: {
+  remarks: {
     type: String,
     default: "",
   },
