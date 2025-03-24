@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const cors = require("cors");
+const router = require("./router");
 
 dotenv.config();
 
@@ -12,17 +13,10 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 
+app.use("/api", router);
+
 //app port
 const PORT = process.env.PORT || 8080;
-
-app.get("/", (req, res) => {
-  try {
-    res.json("server loaded");
-  } catch (error) {
-    console.log(error);
-    res.json(error);
-  }
-});
 
 app.listen(PORT, () => {
   console.log(`Server connected to : http://localhost:${PORT}`);
